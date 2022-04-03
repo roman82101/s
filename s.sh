@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #   Инфа скачивания и запуска скрипта в Ubuntu 20.04
-#   wget https://raw.githubusercontent.com/roman82101/s/1/s.sh?token=GHSAT0AAAAAABTFSJIV7IU2WXTIRTWM6NPOYSJXFZA
+#   wget https://raw.githubusercontent.com/roman82101/s/1/s.sh
 #   chmod +x s.sh
 #   ./s.sh 2>&1
 
