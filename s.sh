@@ -1614,7 +1614,7 @@ cd ..
 echo "... Установить AdGuardHome ..."
 curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
 echo "... Добавление локального DNS в Shadowsocks ..."
-sed -i 's/"nameserver": "0.0.0.0"/"nameserver": "127.0.0.1"/' /etc/shadowsocks-libev/config.json
+sed -i 's/.*nameserver.*/"nameserver": "127.0.0.1"/' /etc/shadowsocks-libev/config.json
 echo "... Добавление локального DNS в Ubuntu ..."
 sed -i 's/^DNS=.*/DNS=127.0.0.1/;s/.*SStubListener=.*/DNSStubListener=no/' /etc/systemd/resolved.conf
 
