@@ -641,7 +641,7 @@ sed -e '/Intel Mac OS X 10_11_6/r./user_agents' config > config.json
 rm -f user_agents.txt tmp1 tmp2 config user_agents
 echo ... Создание скрипта start-n0isy.sh ...
 echo -n "#!" > /root/noisy/start-n0isy.sh
-echo "/bin/bash" >> /root/noisy/start-n0isy.sh
+echo "/bin/sh" >> /root/noisy/start-n0isy.sh
 echo -n 'if [ -z "' >> /root/noisy/start-n0isy.sh
 echo -n '$' >> /root/noisy/start-n0isy.sh
 echo '(pgrep -f [n]oisy)" ]' >> /root/noisy/start-n0isy.sh
@@ -650,7 +650,7 @@ echo -n '        echo ' >> /root/noisy/start-n0isy.sh
 echo -n '$' >> /root/noisy/start-n0isy.sh
 echo '(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy_log' >> /root/noisy/start-n0isy.sh
 echo "        sleep 1  #delay" >> /root/noisy/start-n0isy.sh
-echo "        python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /root/noisy/start-n0isy.sh
+echo "        /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /root/noisy/start-n0isy.sh
 echo "        exit 1" >> /root/noisy/start-n0isy.sh
 echo -n "}" >> /root/noisy/start-n0isy.sh
 echo -n " else " >> /root/noisy/start-n0isy.sh
