@@ -15,11 +15,11 @@
 
 #   Мои данные серевера изменённые в скрипте OpenVPN
 #	IPV6_SUPPORT ="n"
-#   PORT="1194"
+#	PORT="1194"
 #	PROTOCOL="udp"
-#   DNS="1"
-#   COMPRESSION_ENABLED="n"
-#   CUSTOMIZE_ENC="n"
+#	DNS="1"
+#	COMPRESSION_ENABLED="n"
+#	CUSTOMIZE_ENC="n"
 
 
 echo "... Удаление пользователя temp ..."
@@ -789,11 +789,11 @@ function installQuestions() {
 	fi
 
 	IPV6_SUPPORT ="n"
-    PORT="1194"
+	PORT="1194"
 	PROTOCOL="udp"
-    DNS="1"
-    COMPRESSION_ENABLED="n"
-    CUSTOMIZE_ENC="n"
+	DNS="1"
+	COMPRESSION_ENABLED="n"
+	CUSTOMIZE_ENC="n"
     
 	if [[ $CUSTOMIZE_ENC == "n" ]]; then
 		# Use default, sane and fast parameters
