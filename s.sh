@@ -6,12 +6,9 @@
 #   ./s.sh 2>&1
 
 #   Мои данные серевера изменённые в скрипте Shadowsocks
-    # Set shadowsocks encryption method
-#    shadowsocks_method="chacha20-ietf-poly1305"
-    # Set shadowsocks config port
-#    shadowsocks_port="8080"
-    # Set TCP Fast Open for shadowsocks
-#    shadowsocks_fastopen="true"
+#	shadowsocks_method="chacha20-ietf-poly1305"
+#	shadowsocks_port="8080"
+#	shadowsocks_fastopen="true"
 
 #   Мои данные серевера изменённые в скрипте OpenVPN
 #	IPV6_SUPPORT ="n"
