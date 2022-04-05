@@ -41,12 +41,12 @@ ufw allow 53
 ufw allow 80
 ufw allow 3000
 #echo "... Блокировка подозрителных IP ..."
-#ufw deny from 59.83.229.31 to any
-#ufw deny from 131.159.25.7 to any
-#ufw deny from 162.142.125.221 to any
-#ufw deny from 162.142.125.132 to any
-#ufw deny from 192.87.173.56 to any
-#ufw deny from 141.22.28.227 to any
+ufw deny from 59.83.229.31 to any
+ufw deny from 131.159.25.7 to any
+ufw deny from 162.142.125.221 to any
+ufw deny from 162.142.125.132 to any
+ufw deny from 192.87.173.56 to any
+ufw deny from 141.22.28.227 to any
 ufw enable
 
 
@@ -534,7 +534,7 @@ chmod +x openvpn-install.sh
 
 echo "... Установка AdGuardHome ..."
 curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
-echo "... Добавление локального DNS в Shadowsocks ..."
+#echo "... Добавление локального DNS в Shadowsocks ..."
 #sed -i 's/.*nameserver.*/"nameserver": "127.0.0.1",/' /etc/shadowsocks.json
 echo "... Добавление локального DNS в Ubuntu ..."
 sed -i 's/^DNS=.*/DNS=127.0.0.1/;s/.*SStubListener=.*/DNSStubListener=no/' /etc/systemd/resolved.conf
