@@ -89,12 +89,12 @@ scriptDate="20201130"
 
 clear
 echo
-echo "#############################################################"
+echo "............................................................#"
 echo "# shadowsocks python server install for Debian / Ubuntu     #"
 echo "# Thanks: @clowwindy <https://twitter.com/clowwindy>        #"
 echo "# Author: Wave WorkShop <waveworkshop@outlook.com>          #"
 echo "# Github: https://github.com/shadowsocks/shadowsocks        #"
-echo "#############################################################"
+echo "............................................................#"
 echo
 
 # Set color
@@ -161,7 +161,7 @@ setupProfile(){
     # Set shadowsocks encryption method
     shadowsocks_method="chacha20-ietf-poly1305"
     # Set shadowsocks config port
-    shadowsocks_port="8080"
+    shadowsocks_port="443"
     # Set TCP Fast Open for shadowsocks
     shadowsocks_fastopen="true"
     # Install necessary dependencies
@@ -301,13 +301,11 @@ optimizeShadowsocks(){
             # Use Google BBR
             cat >> /etc/sysctl.conf <<'EOF'
 fs.file-max = 51200
-            
 net.core.rmem_max = 67108864
 net.core.wmem_max = 67108864
 net.core.netdev_max_backlog = 250000
 net.core.somaxconn = 4096
 net.core.default_qdisc = fq
-            
 net.ipv4.tcp_syncookies = 1
 net.ipv4.tcp_tw_reuse = 1
 net.ipv4.tcp_tw_recycle = 0
@@ -431,7 +429,7 @@ type apt >/dev/null 2>&1
 if [ $? -eq 0 ];then
     # necessary depend μ
     apt -y install bc lsb-release
-else 
+else
     if [ -s /etc/redhat-release ]; then
         if [ -s /etc/centos-release ]; then
             CENTOSVER=$(rpm -q centos-release | cut -d- -f3)
@@ -499,12 +497,12 @@ case "$OSVER" in
         ;;
 esac
 
-echo -e "#############################################################"
+echo -e "............................................................#"
 echo -e "#       ${RED}OS${PLAIN}: $OSID $OSNUM $OSVER "
 echo -e "#   ${RED}Kernel${PLAIN}: $(uname -m) Linux $(uname -r)"
 echo -e "#      ${RED}CPU${PLAIN}: $(grep 'model name' /proc/cpuinfo | uniq | awk -F : '{print $2}' | sed 's/^[ \t]*//g' | sed 's/ \+/ /g') "
 echo -e "#      ${RED}RAM${PLAIN}: $(cat /proc/meminfo | grep 'MemTotal' | awk -F : '{print $2}' | sed 's/^[ \t]*//g') "
-echo -e "#############################################################"
+echo -e "............................................................#"
 echo
 
 # Initialization step
