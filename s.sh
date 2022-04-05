@@ -208,6 +208,7 @@ writeProfile(){
     "password":"${shadowsocks_passwd}",
     "timeout":300,
     "method":"${shadowsocks_method}",
+    "nameserver":"127.0.0.1",
     "fast_open":${shadowsocks_fastopen}
 }
 EOF
@@ -534,8 +535,7 @@ chmod +x openvpn-install.sh
 echo "... Установка AdGuardHome ..."
 curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
 echo "... Добавление локального DNS в Shadowsocks ..."
-sed -i 's/.*nameserver.*/"nameserver": "127.0.0.1",/' /etc/shadowsocks-libev/config.json
-sed -i 's/.*nameserver.*/"nameserver": "127.0.0.1",/' /etc/shadowsocks.json
+#sed -i 's/.*nameserver.*/"nameserver": "127.0.0.1",/' /etc/shadowsocks.json
 echo "... Добавление локального DNS в Ubuntu ..."
 sed -i 's/^DNS=.*/DNS=127.0.0.1/;s/.*SStubListener=.*/DNSStubListener=no/' /etc/systemd/resolved.conf
 
