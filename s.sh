@@ -3,7 +3,7 @@
 #   Инфа скачивания и запуска скрипта в Ubuntu 20.04
 #   wget https://raw.githubusercontent.com/roman82101/s/1/s.sh
 #   chmod +x s.sh
-#   ./s.sh 2>&1
+#   ./s.sh install 2>&1
 
 #   Мои данные серевера изменённые в скрипте Shadowsocks
 #	shadowsocks_method="chacha20-ietf-poly1305"
