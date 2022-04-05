@@ -42,6 +42,11 @@ ufw allow 80
 ufw allow 3000
 echo "... Блокировка подозрителных IP ..."
 ufw deny from 59.83.229.31 to any
+ufw deny from 131.159.25.7 to any
+ufw deny from 162.142.125.221 to any
+ufw deny from 162.142.125.132 to any
+ufw deny from 192.87.173.56 to any
+ufw deny from 141.22.28.227 to any
 ufw enable
 
 
@@ -524,6 +529,8 @@ esac
 
 
 echo "... Установка OpenVPN ..."
+wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+chmod +x openvpn-install.sh
 # shellcheck disable=SC1091,SC2164,SC2034,SC1072,SC1073,SC1009
 # Secure OpenVPN server installer for Debian, Ubuntu, CentOS, Amazon Linux 2, Fedora, Oracle Linux 8, Arch Linux, Rocky Linux and AlmaLinux.
 # https://github.com/angristan/openvpn-install
@@ -1328,8 +1335,9 @@ read item
 case "$item" in
     y|Y) echo "... Добавление команд в bash_history ..."
         sed -i 'd' /root/.bash_history
-        echo "apt update && apt upgrade -y" >> /root/.bash_history
-        echo "apt clean && apt autoclean" > /root/.bash_history
+        echo "apt update && apt upgrade -y" > /root/.bash_history
+        echo "apt clean && apt autoclean" >> /root/.bash_history
+        echo "./openvpn-install.sh" >> /root/.bash_history
         echo "nethogs" >> /root/.bash_history
         echo "iftop -P" >> /root/.bash_history
         echo "htop" >> /root/.bash_history
