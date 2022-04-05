@@ -40,13 +40,13 @@ ufw allow 1194
 ufw allow 53
 ufw allow 80
 ufw allow 3000
-echo "... Блокировка подозрителных IP ..."
-ufw deny from 59.83.229.31 to any
-ufw deny from 131.159.25.7 to any
-ufw deny from 162.142.125.221 to any
-ufw deny from 162.142.125.132 to any
-ufw deny from 192.87.173.56 to any
-ufw deny from 141.22.28.227 to any
+#echo "... Блокировка подозрителных IP ..."
+#ufw deny from 59.83.229.31 to any
+#ufw deny from 131.159.25.7 to any
+#ufw deny from 162.142.125.221 to any
+#ufw deny from 162.142.125.132 to any
+#ufw deny from 192.87.173.56 to any
+#ufw deny from 141.22.28.227 to any
 ufw enable
 
 
@@ -161,7 +161,7 @@ setupProfile(){
     # Set shadowsocks encryption method
     shadowsocks_method="chacha20-ietf-poly1305"
     # Set shadowsocks config port
-    shadowsocks_port="443"
+    shadowsocks_port="8080"
     # Set TCP Fast Open for shadowsocks
     shadowsocks_fastopen="true"
     # Install necessary dependencies
