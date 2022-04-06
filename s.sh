@@ -58,6 +58,10 @@ echo 'net.ipv6.conf.lo.disable_ipv6 = 1' >> /etc/sysctl.conf
 sysctl -p
 
 
+echo "... Oтключить PasswordAuthentication ..."
+sed -i 's/.*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
+
+
 echo "... Установка ufw-bots ..."
 wget https://raw.githubusercontent.com/brahma-dev/ufw-bots/master/files/ufw.sh
 echo "... Удалить IP Белтелекома ..."
