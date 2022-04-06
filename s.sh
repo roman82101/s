@@ -9,6 +9,7 @@
 #	shadowsocks_method="chacha20-ietf-poly1305"
 #	shadowsocks_port="8080"
 #	shadowsocks_fastopen="true"
+#	"nameserver":"127.0.0.1",
 
 #   Мои данные серевера изменённые в скрипте OpenVPN
 #	IPV6_SUPPORT ="n"
