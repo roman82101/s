@@ -670,32 +670,34 @@ echo '}' >> /root/noisy/config
 echo "... Слияние user_agents и config ..."
 sed -e '/Intel Mac OS X 10_11_6/r./user_agents' config > config.json
 rm -f user_agents.txt tmp1 tmp2 config user_agents
-echo ... Создание скрипта start-n0isy.sh ...
-echo -n "#!" > /root/noisy/start-n0isy.sh
-echo "/bin/sh" >> /root/noisy/start-n0isy.sh
-echo -n 'if [ -z "' >> /root/noisy/start-n0isy.sh
-echo -n '$' >> /root/noisy/start-n0isy.sh
-echo '(pgrep -f [n]oisy)" ]' >> /root/noisy/start-n0isy.sh
-echo "then {" >> /root/noisy/start-n0isy.sh
-echo -n '        echo ' >> /root/noisy/start-n0isy.sh
-echo -n '$' >> /root/noisy/start-n0isy.sh
-echo '(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log' >> /root/noisy/start-n0isy.sh
-echo "        sleep 1  #delay" >> /root/noisy/start-n0isy.sh
-echo "        /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /root/noisy/start-n0isy.sh
-echo "        exit 1" >> /root/noisy/start-n0isy.sh
-echo -n "}" >> /root/noisy/start-n0isy.sh
-echo -n " else " >> /root/noisy/start-n0isy.sh
-echo "{" >> /root/noisy/start-n0isy.sh
-echo -n '        echo ' >> /root/noisy/start-n0isy.sh
-echo -n '$' >> /root/noisy/start-n0isy.sh
-echo '"EXIT. Noisy already running!"' >> /root/noisy/start-n0isy.sh
-echo "        exit 1" >> /root/noisy/start-n0isy.sh
-echo "}" >> /root/noisy/start-n0isy.sh
-echo "fi" >> /root/noisy/start-n0isy.sh
-chmod +x /root/noisy/start-n0isy.sh
+
+#echo ... Создание скрипта start-n0isy.sh ...
+#echo -n "#!" > /root/noisy/start-n0isy.sh
+#echo "/bin/sh" >> /root/noisy/start-n0isy.sh
+#echo -n 'if [ -z "' >> /root/noisy/start-n0isy.sh
+#echo -n '$' >> /root/noisy/start-n0isy.sh
+#echo '(pgrep -f [n]oisy)" ]' >> /root/noisy/start-n0isy.sh
+#echo "then {" >> /root/noisy/start-n0isy.sh
+#echo -n '        echo ' >> /root/noisy/start-n0isy.sh
+#echo -n '$' >> /root/noisy/start-n0isy.sh
+#echo '(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log' >> /root/noisy/start-n0isy.sh
+#echo "        sleep 1  #delay" >> /root/noisy/start-n0isy.sh
+#echo "        /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /root/noisy/start-n0isy.sh
+#echo "        exit 1" >> /root/noisy/start-n0isy.sh
+#echo -n "}" >> /root/noisy/start-n0isy.sh
+#echo -n " else " >> /root/noisy/start-n0isy.sh
+#echo "{" >> /root/noisy/start-n0isy.sh
+#echo -n '        echo ' >> /root/noisy/start-n0isy.sh
+#echo -n '$' >> /root/noisy/start-n0isy.sh
+#echo '"EXIT. Noisy already running!"' >> /root/noisy/start-n0isy.sh
+#echo "        exit 1" >> /root/noisy/start-n0isy.sh
+#echo "}" >> /root/noisy/start-n0isy.sh
+#echo "fi" >> /root/noisy/start-n0isy.sh
+#chmod +x /root/noisy/start-n0isy.sh
+
 echo "... Добавление start-n0isy в cron ..."
 sed -i '$ d' /etc/crontab
-echo "0 * * * *   root    /root/noisy/start-n0isy.sh" >> /etc/crontab
+echo "0 * * * *   root    if [ -z "$(pgrep -f [n]oisy)" ]; then { echo $(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log; sleep 1; /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json; exit 1; } else { echo $(date +%Y-%m-%d:%k:%M:%S) "EXIT. Noisy already running!" >> /var/log/noisy.log; exit 1; } fi" >> /etc/crontab
 echo "@reboot   root    /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /etc/crontab
 echo "#" >> /etc/crontab
 cd ..
