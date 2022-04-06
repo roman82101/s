@@ -675,7 +675,7 @@ echo '(pgrep -f [n]oisy)" ]' >> /root/noisy/start-n0isy.sh
 echo "then {" >> /root/noisy/start-n0isy.sh
 echo -n '        echo ' >> /root/noisy/start-n0isy.sh
 echo -n '$' >> /root/noisy/start-n0isy.sh
-echo '(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy_log' >> /root/noisy/start-n0isy.sh
+echo '(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log' >> /root/noisy/start-n0isy.sh
 echo "        sleep 1  #delay" >> /root/noisy/start-n0isy.sh
 echo "        /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /root/noisy/start-n0isy.sh
 echo "        exit 1" >> /root/noisy/start-n0isy.sh
@@ -692,7 +692,7 @@ chmod +x /root/noisy/start-n0isy.sh
 echo "... Добавление start-n0isy в cron ..."
 sed -i '$ d' /etc/crontab
 echo "0 * * * *   root    /root/noisy/start-n0isy.sh" >> /etc/crontab
-echo "@reboot   root    /root/noisy/start-n0isy.sh" >> /etc/crontab
+echo "@reboot   root    /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /etc/crontab
 echo "#" >> /etc/crontab
 cd ..
 
