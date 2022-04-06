@@ -695,7 +695,7 @@ rm -f user_agents.txt tmp1 tmp2 config user_agents
 #echo "fi" >> /root/noisy/start-n0isy.sh
 #chmod +x /root/noisy/start-n0isy.sh
 
-echo "... Добавление start-n0isy в cron ..."
+echo "... Добавление noisy в cron ..."
 sed -i '$ d' /etc/crontab
 echo "0 * * * *   root    if [ -z "$(pgrep -f [n]oisy)" ]; then { echo $(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log; sleep 1; /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json; exit 1; } else { echo $(date +%Y-%m-%d:%k:%M:%S) "EXIT. Noisy already running!" >> /var/log/noisy.log; exit 1; } fi" >> /etc/crontab
 echo "@reboot   root    /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /etc/crontab
