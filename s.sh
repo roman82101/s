@@ -666,22 +666,24 @@ EOF
 echo "... Слияние user_agents и config ..."
 sed -e '/Intel Mac OS X 10_11_6/r./user_agents' config > config.json
 rm -f user_agents.txt tmp1 tmp2 config user_agents
+: '
 #echo ... Создание скрипта start-n0isy.sh ...
-#cat >> /root/noisy/start-n0isy.sh <<'EOF'
-##!/bin/sh
-#if [ -z "$(pgrep -f [n]oisy)" ]
-#then {
-#        echo $(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log
-#        sleep 1  #delay
-#        /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json
-#        exit 1
-#} else {
-#        echo $"EXIT. Noisy already running!"
-#        exit 1
-#}
-#fi
-#EOF
-#chmod +x /root/noisy/start-n0isy.sh
+cat >> /root/noisy/start-n0isy.sh <<'EOF'
+#!/bin/sh
+if [ -z "$(pgrep -f [n]oisy)" ]
+then {
+        echo $(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log
+        sleep 1  #delay
+        /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json
+        exit 1
+} else {
+        echo $"EXIT. Noisy already running!"
+        exit 1
+}
+fi
+EOF
+chmod +x /root/noisy/start-n0isy.sh
+'
 echo "... Добавление noisy в cron ..."
 sed -i '$ d' /etc/crontab
 echo "0 */4 * * *   root    reboot" >> /etc/crontab
