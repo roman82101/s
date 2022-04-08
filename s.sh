@@ -41,13 +41,15 @@ ufw allow 1194
 ufw allow 53
 ufw allow 80
 ufw allow 3000
-#echo "... Блокировка подозрителных IP ..."
-ufw deny from 59.83.229.31 to any
+#echo "... Блокировка подозрителных IP (-_-)..."
+ufw deny from 121.37.70.232 to any
 ufw deny from 131.159.25.7 to any
-ufw deny from 162.142.125.221 to any
-ufw deny from 162.142.125.132 to any
-ufw deny from 192.87.173.56 to any
 ufw deny from 141.22.28.227 to any
+ufw deny from 162.142.125.132 to any
+ufw deny from 162.142.125.221 to any
+ufw deny from 192.87.173.56 to any
+ufw deny from 209.126.3.247 to any
+ufw deny from 59.83.229.31 to any
 ufw enable
 
 
@@ -556,148 +558,141 @@ sed -rn '/^.{110,200}$/p' user_agents.txt > tmp1
 sed '/compatible/d;/NetSystemsResearch/d;/com.google.android/d;/Valve/d;/Chrome*\/1/d;/Chrome*\/2/d;/Chrome*\/3/d;/Chrome*\/4/d;/Chrome*\/5/d;/Chrome*\/6/d;/Chrome*\/7/d;/Chrome*\/8/d;s/^/"/;s/$/",/' tmp1 > tmp2
 sort -R tmp2 > user_agents
 echo "... Создание config для noisy ..."
-echo '{' > /root/noisy/config
-echo '    "max_depth": 25,' >> /root/noisy/config
-echo '    "min_sleep": 3,' >> /root/noisy/config
-echo '    "max_sleep": 6,' >> /root/noisy/config
-echo '    "timeout": false,' >> /root/noisy/config
-echo '    "root_urls": [' >> /root/noisy/config
-echo '        "http://4chan.org",' >> /root/noisy/config
-echo '        "https://www.reddit.com",' >> /root/noisy/config
-echo '        "http://www.cnn.com",' >> /root/noisy/config
-echo '        "https://pornhub.com",' >> /root/noisy/config
-echo '        "https://yandex.ru",' >> /root/noisy/config
-echo '        "https://baidu.com",' >> /root/noisy/config
-echo '        "https://instagram.com",' >> /root/noisy/config
-echo '        "https://xvideos.com",' >> /root/noisy/config
-echo '        "https://ok.ru",' >> /root/noisy/config
-echo '        "https://turbopages.org",' >> /root/noisy/config
-echo '        "https://avito.ru",' >> /root/noisy/config
-echo '        "https://wildberries.ru",' >> /root/noisy/config
-echo '        "https://facebook.com",' >> /root/noisy/config
-echo '        "https://gismeteo.ru",' >> /root/noisy/config
-echo '        "https://kinopoisk.ru",' >> /root/noisy/config
-echo '        "https://google.ru",' >> /root/noisy/config
-echo '        "https://glavnoe.net",' >> /root/noisy/config
-echo '        "https://ozon.ru",' >> /root/noisy/config
-echo '        "https://market.yandex.ru",' >> /root/noisy/config
-echo '        "https://gosuslugi.ru",' >> /root/noisy/config
-echo '        "https://ria.ru",' >> /root/noisy/config
-echo '        "https://lenta.ru",' >> /root/noisy/config
-echo '        "https://rambler.ru",' >> /root/noisy/config
-echo '        "https://rbc.ru",' >> /root/noisy/config
-echo '        "https://news.mail.ru",' >> /root/noisy/config
-echo '        "https://novostinedeli24.com",' >> /root/noisy/config
-echo '        "https://rus-tv.su",' >> /root/noisy/config
-echo '        "https://whatsapp.com",' >> /root/noisy/config
-echo '        "https://twitter.com",' >> /root/noisy/config
-echo '        "https://gdz.ru",' >> /root/noisy/config
-echo '        "https://mk.ru",' >> /root/noisy/config
-echo '        "https://ficbook.net",' >> /root/noisy/config
-echo '        "https://drom.ru",' >> /root/noisy/config
-echo '        "https://sberbank.ru",' >> /root/noisy/config
-echo '        "https://kp.ru",' >> /root/noisy/config
-echo '        "https://pikabu.ru",' >> /root/noisy/config
-echo '        "https://greenfilm.vip",' >> /root/noisy/config
-echo '        "https://music.yandex.ru",' >> /root/noisy/config
-echo '        "https://livejournal.com",' >> /root/noisy/config
-echo '        "https://mos.ru faviconmos.ru",' >> /root/noisy/config
-echo '        "https://litnet.com",' >> /root/noisy/config
-echo '        "https://hh.ru",' >> /root/noisy/config
-echo '        "https://lentainform.com",' >> /root/noisy/config
-echo '        "https://championat.com",' >> /root/noisy/config
-echo '        "https://ssyoutube.com",' >> /root/noisy/config
-echo '        "https://drive2.ru",' >> /root/noisy/config
-echo '        "https://apple.com",' >> /root/noisy/config
-echo '        "https://rutube.ru",' >> /root/noisy/config
-echo '        "https://mail.rambler.ru",' >> /root/noisy/config
-echo '        "https://bamper.by",' >> /root/noisy/config
-echo '        "https://mail.ru",' >> /root/noisy/config
-echo '        "https://onliner.by",' >> /root/noisy/config
-echo '        "https://catalog.onliner.by",' >> /root/noisy/config
-echo '        "https://kufar.by",' >> /root/noisy/config
-echo '        "https://aliexpress.ru",' >> /root/noisy/config
-echo '        "https://gdeposylka.ru",' >> /root/noisy/config
-echo '        "https://skype.com",' >> /root/noisy/config
-echo '        "https://gitlab.com",' >> /root/noisy/config
-echo '        "https://4pda.ru",' >> /root/noisy/config
-echo '        "https://2ip.ru",' >> /root/noisy/config
-echo '        "https://playground.ru",' >> /root/noisy/config
-echo '        "https://devices.sensor.community",' >> /root/noisy/config
-echo '        "https://airly.org",' >> /root/noisy/config
-echo '        "https://airmq.by",' >> /root/noisy/config
-echo '        "https://charter97.org",' >> /root/noisy/config
-echo '        "https://amazon.com",' >> /root/noisy/config
-echo '        "https://vk.com",' >> /root/noisy/config
-echo '        "https://tiktok.com",' >> /root/noisy/config
-echo '        "https://twitch.tv",' >> /root/noisy/config
-echo '        "https://microsoft.com",' >> /root/noisy/config
-echo '        "https://bing.com",' >> /root/noisy/config
-echo '        "https://fandom.com",' >> /root/noisy/config
-echo '        "https://pinterest.com",' >> /root/noisy/config
-echo '        "http://www.ebay.com",' >> /root/noisy/config
-echo '        "https://wikipedia.org",' >> /root/noisy/config
-echo '        "https://youtube.com",' >> /root/noisy/config
-echo '        "https://github.com",' >> /root/noisy/config
-echo '        "https://medium.com",' >> /root/noisy/config
-echo '        "https://thepiratebay.org"' >> /root/noisy/config
-echo '    ],' >> /root/noisy/config
-echo '    "blacklisted_urls": [' >> /root/noisy/config
-echo '        "https://t.co",' >> /root/noisy/config
-echo '        "t.umblr.com",' >> /root/noisy/config
-echo '        "messenger.com",' >> /root/noisy/config
-echo '        "itunes.apple.com",' >> /root/noisy/config
-echo '        "l.facebook.com",' >> /root/noisy/config
-echo '        "bit.ly",' >> /root/noisy/config
-echo '        "mediawiki",' >> /root/noisy/config
-echo '        ".css",' >> /root/noisy/config
-echo '        ".ico",' >> /root/noisy/config
-echo '        ".xml",' >> /root/noisy/config
-echo '        "intent/tweet",' >> /root/noisy/config
-echo '        "twitter.com/share",' >> /root/noisy/config
-echo '        "dialog/feed?",' >> /root/noisy/config
-echo '        ".json",' >> /root/noisy/config
-echo '        "zendesk",' >> /root/noisy/config
-echo '        "clickserve",' >> /root/noisy/config
-echo '        ".png",' >> /root/noisy/config
-echo '        ".iso"' >> /root/noisy/config
-echo '    ],' >> /root/noisy/config
-echo '    "user_agents": [' >> /root/noisy/config
-echo '"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.7 (KHTML, like Gecko) Version/9.1.2 Safari/601.7.7",' >> /root/noisy/config
-echo '"Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.174 YaBrowser/22.1.3.850 Yowser/2.5 Safari/537.36"' >> /root/noisy/config
-echo '    ]' >> /root/noisy/config
-echo '}' >> /root/noisy/config
+cat >> /root/noisy/config <<'EOF'
+{
+    "max_depth": 25,
+    "min_sleep": 3,
+    "max_sleep": 6,
+    "timeout": false,
+    "root_urls": [
+        "https://4chan.org",
+        "https://www.reddit.com",
+        "http://www.cnn.com",
+        "https://pornhub.com",
+        "https://yandex.ru",
+        "https://baidu.com",
+        "https://instagram.com",
+        "https://xvideos.com",
+        "https://ok.ru",
+        "https://turbopages.org",
+        "https://avito.ru",
+        "https://wildberries.ru",
+        "https://facebook.com",
+        "https://gismeteo.ru",
+        "https://kinopoisk.ru",
+        "https://google.ru",
+        "https://glavnoe.net",
+        "https://ozon.ru",
+        "https://market.yandex.ru",
+        "https://gosuslugi.ru",
+        "https://ria.ru",
+        "https://lenta.ru",
+        "https://rambler.ru",
+        "https://rbc.ru",
+        "https://news.mail.ru",
+        "https://novostinedeli24.com",
+        "https://rus-tv.su",
+        "https://whatsapp.com",
+        "https://twitter.com",
+        "https://gdz.ru",
+        "https://mk.ru",
+        "https://ficbook.net",
+        "https://drom.ru",
+        "https://sberbank.ru",
+        "https://kp.ru",
+        "https://pikabu.ru",
+        "https://greenfilm.vip",
+        "https://music.yandex.ru",
+        "https://livejournal.com",
+        "https://mos.ru faviconmos.ru",
+        "https://litnet.com",
+        "https://hh.ru",
+        "https://lentainform.com",
+        "https://championat.com",
+        "https://ssyoutube.com",
+        "https://drive2.ru",
+        "https://apple.com",
+        "https://rutube.ru",
+        "https://mail.rambler.ru",
+        "https://bamper.by",
+        "https://mail.ru",
+        "https://onliner.by",
+        "https://catalog.onliner.by",
+        "https://kufar.by",
+        "https://aliexpress.ru",
+        "https://gdeposylka.ru",
+        "https://skype.com",
+        "https://gitlab.com",
+        "https://4pda.ru",
+        "https://2ip.ru",
+        "https://playground.ru",
+        "https://devices.sensor.community",
+        "https://airly.org",
+        "https://airmq.by",
+        "https://charter97.org",
+        "https://amazon.com",
+        "https://vk.com",
+        "https://tiktok.com",
+        "https://twitch.tv",
+        "https://microsoft.com",
+        "https://bing.com",
+        "https://fandom.com",
+        "https://pinterest.com",
+        "https://www.ebay.com",
+        "https://wikipedia.org",
+        "https://youtube.com",
+        "https://github.com",
+        "https://medium.com",
+        "https://thepiratebay.org"
+    ],
+    "blacklisted_urls": [
+        "https://t.co",
+        "t.umblr.com",
+        "messenger.com",
+        "itunes.apple.com",
+        "l.facebook.com",
+        "bit.ly",
+        "mediawiki",
+        ".css",
+        ".ico",
+        ".xml",
+        "intent/tweet",
+        "twitter.com/share",
+        "dialog/feed?",
+        ".json",
+        "zendesk",
+        "clickserve",
+        ".png",
+        ".iso"
+    ],
+    "user_agents": [
+"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.7 (KHTML, like Gecko) Version/9.1.2 Safari/601.7.7",
+"Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.174 YaBrowser/22.1.3.850 Yowser/2.5 Safari/537.36"
+    ]
+}
+EOF
 echo "... Слияние user_agents и config ..."
 sed -e '/Intel Mac OS X 10_11_6/r./user_agents' config > config.json
 rm -f user_agents.txt tmp1 tmp2 config user_agents
-
 #echo ... Создание скрипта start-n0isy.sh ...
-#echo -n "#!" > /root/noisy/start-n0isy.sh
-#echo "/bin/sh" >> /root/noisy/start-n0isy.sh
-#echo -n 'if [ -z "' >> /root/noisy/start-n0isy.sh
-#echo -n '$' >> /root/noisy/start-n0isy.sh
-#echo '(pgrep -f [n]oisy)" ]' >> /root/noisy/start-n0isy.sh
-#echo "then {" >> /root/noisy/start-n0isy.sh
-#echo -n '        echo ' >> /root/noisy/start-n0isy.sh
-#echo -n '$' >> /root/noisy/start-n0isy.sh
-#echo '(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log' >> /root/noisy/start-n0isy.sh
-#echo "        sleep 1  #delay" >> /root/noisy/start-n0isy.sh
-#echo "        /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /root/noisy/start-n0isy.sh
-#echo "        exit 1" >> /root/noisy/start-n0isy.sh
-#echo -n "}" >> /root/noisy/start-n0isy.sh
-#echo -n " else " >> /root/noisy/start-n0isy.sh
-#echo "{" >> /root/noisy/start-n0isy.sh
-#echo -n '        echo ' >> /root/noisy/start-n0isy.sh
-#echo -n '$' >> /root/noisy/start-n0isy.sh
-#echo '"EXIT. Noisy already running!"' >> /root/noisy/start-n0isy.sh
-#echo "        exit 1" >> /root/noisy/start-n0isy.sh
-#echo "}" >> /root/noisy/start-n0isy.sh
-#echo "fi" >> /root/noisy/start-n0isy.sh
+#cat >> /root/noisy/start-n0isy.sh <<'EOF'
+##!/bin/sh
+#if [ -z "$(pgrep -f [n]oisy)" ]
+#then {
+#        echo $(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log
+#        sleep 1  #delay
+#        /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json
+#        exit 1
+#} else {
+#        echo $"EXIT. Noisy already running!"
+#        exit 1
+#}
+#fi
+#EOF
 #chmod +x /root/noisy/start-n0isy.sh
-
 echo "... Добавление noisy в cron ..."
 sed -i '$ d' /etc/crontab
-echo "0 * * * *   root    if [ -z "$(pgrep -f [n]oisy)" ]; then { echo $(date +%Y-%m-%d:%k:%M:%S) "Running Noisy" >> /var/log/noisy.log; sleep 1; /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json; exit 1; } else { echo $(date +%Y-%m-%d:%k:%M:%S) "EXIT. Noisy already running!" >> /var/log/noisy.log; exit 1; } fi" >> /etc/crontab
+echo "0 */4 * * *   root    reboot" >> /etc/crontab
 echo "@reboot   root    /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /etc/crontab
 echo "#" >> /etc/crontab
 cd ..
@@ -708,13 +703,15 @@ read item
 case "$item" in
     y|Y) echo "... Добавление команд в bash_history ..."
         sed -i 'd' /root/.bash_history
-        echo "apt update && apt upgrade -y" > /root/.bash_history
-        echo "apt clean && apt autoclean" >> /root/.bash_history
-        echo "./openvpn-install.sh" >> /root/.bash_history
-        echo "nethogs" >> /root/.bash_history
-        echo "iftop -P" >> /root/.bash_history
-        echo "htop" >> /root/.bash_history
-        echo "exit" >> /root/.bash_history
+        cat > /root/.bash_history<<-EOF
+apt update && apt upgrade -y
+apt clean && apt autoclean
+./openvpn-install.sh
+nethogs
+iftop -P
+htop
+exit
+EOF
         ;;
     n|N) echo "... Ввели «n», пропускаем добавление команд ..."
         ;;
