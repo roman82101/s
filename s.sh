@@ -11,14 +11,6 @@
 #	shadowsocks_fastopen="true"
 #	"nameserver":"127.0.0.1",
 
-#   Мои данные серевера изменённые в скрипте OpenVPN
-#	IPV6_SUPPORT ="n"
-#	PORT="1194"
-#	PROTOCOL="udp"
-#	DNS="1"
-#	COMPRESSION_ENABLED="n"
-#	CUSTOMIZE_ENC="n"
-
 
 echo "... Удаление пользователя temp ..."
 deluser --remove-home temp
