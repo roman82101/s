@@ -677,7 +677,7 @@ EOF
 echo "... Слияние user_agents и config ..."
 sed -e '/Intel Mac OS X 10_11_6/r./user_agents' config > config.json
 rm -f user_agents.txt tmp1 tmp2 config user_agents
-: '
+: ' #Закомментировано
 #echo ... Создание скрипта start-n0isy.sh ...
 cat >> /root/noisy/start-n0isy.sh <<'EOF'
 #!/bin/sh
