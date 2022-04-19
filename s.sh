@@ -42,6 +42,7 @@ ufw deny from 162.142.125.221 to any
 ufw deny from 192.87.173.56 to any
 ufw deny from 209.126.3.247 to any
 ufw deny from 59.83.229.31 to any
+ufw deny from 45.45.45.45 to any
 ufw enable
 
 
@@ -647,6 +648,9 @@ cat >> /root/noisy/config <<'EOF'
         "help.pornhub.com",
         "info.xvideos.com",
         "info.xvideos.red",
+        "optout.aboutads.info",
+        "aboutads.info",
+        "aboutamazon.com",
         "help.twitter.com",
         "support.drive2.ru",
         "help.rambler.ru",
