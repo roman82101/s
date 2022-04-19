@@ -701,7 +701,7 @@ chmod +x /root/noisy/start-n0isy.sh
 '
 echo "... Добавление noisy в cron ..."
 sed -i '$ d' /etc/crontab
-echo "0 */4 * * *   root    reboot" >> /etc/crontab
+echo "0 */3 * * *   root    reboot" >> /etc/crontab
 echo "@reboot   root    /usr/bin/python3 /root/noisy/noisy.py --config /root/noisy/config.json" >> /etc/crontab
 echo "#" >> /etc/crontab
 cd ..
