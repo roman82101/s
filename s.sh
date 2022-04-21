@@ -6,6 +6,7 @@
 #   ./s.sh install 2>&1
 
 #   Мои данные серевера изменённые в скрипте Shadowsocks
+#	Пароль придёт на почту
 #	shadowsocks_method="chacha20-ietf-poly1305"
 #	shadowsocks_port="8080"
 #	shadowsocks_fastopen="true"
@@ -16,12 +17,14 @@ echo "... Удаление пользователя temp ..."
 deluser --remove-home temp
 
 
-echo "... Изменить пароль ..."
-passwd
-
-
 echo "... Установка программ ..."
-apt install -y ufw htop nethogs iftop fail2ban python3-requests git curl dnsutils
+apt install -y ufw htop nethogs iftop fail2ban python3-requests git curl dnsutils mailutils
+
+
+echo "... Изменить пароль root ..."
+root_passwd=`dd if=/dev/urandom bs=1 count=10 2>/dev/null | base64 -w 0 | rev | cut -b 2- | rev`
+echo $root_passwd | mail -s "New Password root" roman82101@list.ru -aFrom:VPS@root.com
+echo -e "$root_passwd\n$root_passwd\n" | passwd
 
 
 echo "... Настройка ufw ..."
@@ -34,6 +37,8 @@ ufw allow 53
 ufw allow 80
 ufw allow 3000
 #echo "... Блокировка подозрителных IP (-_-)..."
+ufw deny from 45.45.45.45 to any
+ufw deny from 59.83.229.31 to any
 ufw deny from 121.37.70.232 to any
 ufw deny from 131.159.25.7 to any
 ufw deny from 141.22.28.227 to any
@@ -41,8 +46,6 @@ ufw deny from 162.142.125.132 to any
 ufw deny from 162.142.125.221 to any
 ufw deny from 192.87.173.56 to any
 ufw deny from 209.126.3.247 to any
-ufw deny from 59.83.229.31 to any
-ufw deny from 45.45.45.45 to any
 ufw enable
 
 
@@ -55,6 +58,7 @@ sysctl -p
 
 echo "... Oтключить PasswordAuthentication ..."
 sed -i 's/.*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
+systemctl restart ssh
 
 
 echo "... Установка ufw-bots ..."
@@ -149,15 +153,8 @@ get_char(){
 # Configure shadowsocks setting
 setupProfile(){
     # Set shadowsocks config password
-    echo "Please input password for shadowsocks:"
-    echo "default: material"
-    read shadowsocks_passwd
-    [ -z "${shadowsocks_passwd}" ] && shadowsocks_passwd="material"
-    echo
-    echo "---------------------------"
-    echo "password = ${shadowsocks_passwd}"
-    echo "---------------------------"
-    echo
+    shadowsocks_passwd=`dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64 -w 0 | rev | cut -b 2- | rev`
+    echo $shadowsocks_passwd | mail -s "New Password ShadowSocks" roman82101@list.ru -aFrom:ShadowSocks@VPS.com
     # Set shadowsocks encryption method
     shadowsocks_method="chacha20-ietf-poly1305"
     # Set shadowsocks config port
