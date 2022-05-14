@@ -669,6 +669,7 @@ cat >> /root/noisy/config <<'EOF'
         "support.drive2.ru",
         "support.google.com",
         "support.mozilla.org",
+        "support.twitter.com",
         "t.umblr.com",
         "twitter.com/share",
         "zendesk",
