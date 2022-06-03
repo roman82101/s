@@ -18,12 +18,12 @@ deluser --remove-home temp
 
 
 echo "... Установка программ ..."
-apt install -y ufw htop nethogs iftop fail2ban python3-requests git curl dnsutils mailutils
+apt install -y ufw htop nethogs iftop fail2ban python3-requests git curl dnsutils mutt
 
 
 echo "... Изменить пароль root ..."
 root_passwd=`dd if=/dev/urandom bs=1 count=10 2>/dev/null | base64 -w 0 | rev | cut -b 2- | rev`
-echo $root_passwd | mail -s "New Password root" roman82101@list.ru -aFrom:VPS@root.com
+echo $root_passwd | mutt -s "New Password root" roman82101@list.ru
 echo -e "$root_passwd\n$root_passwd\n" | passwd
 
 
@@ -154,7 +154,7 @@ get_char(){
 setupProfile(){
     # Set shadowsocks config password
     shadowsocks_passwd=`dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64 -w 0 | rev | cut -b 2- | rev`
-    echo $shadowsocks_passwd | mail -s "New Password ShadowSocks" roman82101@list.ru -aFrom:ShadowSocks@VPS.com
+    echo $shadowsocks_passwd | mutt -s "New Password ShadowSocks" roman82101@list.ru
     # Set shadowsocks encryption method
     shadowsocks_method="chacha20-ietf-poly1305"
     # Set shadowsocks config port
