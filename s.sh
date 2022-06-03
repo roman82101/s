@@ -18,7 +18,7 @@ deluser --remove-home temp
 
 
 echo "... Установка программ ..."
-apt install -y ufw htop nethogs iftop fail2ban python3-requests git curl dnsutils mutt
+apt install -y ufw htop nethogs iftop fail2ban python3-requests git curl dnsutils mutt postfix
 
 
 echo "... Изменить пароль root ..."
