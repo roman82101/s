@@ -39,6 +39,7 @@ ufw allow 3000
 #echo "... Блокировка подозрителных IP (-_-)..."
 ufw deny from 45.45.45.45 to any
 ufw deny from 59.83.229.31 to any
+ufw deny from 115.231.102.198 to any
 ufw deny from 121.37.70.232 to any
 ufw deny from 131.159.25.7 to any
 ufw deny from 141.22.28.227 to any
@@ -523,6 +524,7 @@ case "$1" in
         ;;
 esac
 
+read -p "Press enter to continue"
 
 echo "... Загрузка OpenVPN ..."
 wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
